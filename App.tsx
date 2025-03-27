@@ -7,6 +7,7 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
+import { Loading } from '@components/Loading'
 
 export default function App() {
   // fontsLoad booleano que indica se as fontes carregou ou não
@@ -16,15 +17,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {fontsLoad ? (
-          <Groups />
-        ) : (
-          <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-          >
-            <ActivityIndicator size="large" />
-          </View>
-        )}
+        {!fontsLoad ? <Groups /> : <Loading />}
       </ThemeProvider>
     </>
   )
