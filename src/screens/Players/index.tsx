@@ -1,7 +1,8 @@
 import { Header } from '@components/Header'
-import { Container } from './styles'
+import { Container, Form } from './styles'
 import { Highlight } from '@components/Highlight'
 import { ButtonIcons } from '@components/ButtonIcons'
+import { Input } from '@components/Input'
 
 export function Players() {
   return (
@@ -11,8 +12,10 @@ export function Players() {
         title="Nome da turma"
         subtitle="adicione a galera e separe os times"
       />
-
-      <ButtonIcons />
+      <Form>
+        <Input placeholder="Nome da pessoa" autoCorrect={false} />
+        <ButtonIcons icon="add" />
+      </Form>
     </Container>
   )
 }
