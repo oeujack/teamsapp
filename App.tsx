@@ -1,4 +1,4 @@
-import { NewGroup } from '@screens/NewGroup'
+import { Players } from '@screens/Players'
 import { StatusBar } from 'react-native'
 import theme from 'src/theme'
 import { ThemeProvider } from 'styled-components'
@@ -22,7 +22,7 @@ export default function App() {
           backgroundColor="transparent"
           barStyle="light-content"
         />
-        {fontsLoad ? <NewGroup /> : <Loading />}
+        {fontsLoad ? <Players /> : <Loading />}
       </ThemeProvider>
     </>
   )
