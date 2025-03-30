@@ -3,7 +3,8 @@ import { Container } from './styles'
 import { Header } from '@components/Header'
 import { Highlight } from '@components/Highlight'
 import { useState } from 'react'
-import { FlatList, Text } from 'react-native'
+import { FlatList } from 'react-native'
+import { ListEmpty } from '@components/ListEmpty'
 
 export function Groups() {
   const [groups, setGroups] = useState([
@@ -16,13 +17,15 @@ export function Groups() {
     <Container>
       <Header showBackButton />
       <Highlight title="Turmas" subtitle="jogue com a sua turma" />
+
       <FlatList
         data={groups}
         keyExtractor={(item) => item}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
-          <Text>Adicione participantes à sua lista de presença.</Text>
+          <ListEmpty message="Que tal cadastrar a primeira turma?" />
         )}
+        contentContainerStyle={groups.length === 0 && { flex: 1 }}
         renderItem={({ item }) => <GroupCard title={item} />}
       />
     </Container>
