@@ -1,4 +1,3 @@
-import { Players } from '@screens/Players'
 import { StatusBar } from 'react-native'
 import theme from 'src/theme'
 import { ThemeProvider } from 'styled-components'
@@ -8,6 +7,7 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 import { Loading } from '@components/Loading'
+import { Routes } from 'src/routes'
 
 export default function App() {
   // fontsLoad booleano que indica se as fontes carregou ou não
@@ -22,7 +22,7 @@ export default function App() {
           backgroundColor="transparent"
           barStyle="light-content"
         />
-        {fontsLoad ? <Players /> : <Loading />}
+        {fontsLoad ? <Routes /> : <Loading />}
       </ThemeProvider>
     </>
   )
