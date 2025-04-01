@@ -9,11 +9,7 @@ import { Button } from '@components/Button'
 import { useNavigation } from '@react-navigation/native'
 
 export function Groups() {
-  const [groups, setGroups] = useState([
-    'Liga da Justiça',
-    'Vingadores',
-    'Defensores',
-  ])
+  const [groups, setGroups] = useState<string[]>([])
 
   const navigation = useNavigation()
 
@@ -23,7 +19,7 @@ export function Groups() {
 
   return (
     <Container>
-      <Header showBackButton />
+      <Header />
       <Highlight title="Turmas" subtitle="jogue com a sua turma" />
 
       <FlatList
