@@ -27,6 +27,10 @@ export function Groups() {
     }
   }
 
+  function handleOpenGroup(groupName: string) {
+    navigation.navigate('players', { group: groupName });
+  }
+
   useFocusEffect(
     useCallback(() => {
       fetchGroups();
@@ -46,7 +50,9 @@ export function Groups() {
           <ListEmpty message="Que tal cadastrar a primeira turma?" />
         )}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
-        renderItem={({ item }) => <GroupCard title={item} />}
+        renderItem={({ item }) => (
+          <GroupCard title={item} onPress={() => handleOpenGroup(item)} />
+        )}
       />
 
       <Button title="Criar nova turma" onPress={handleNewGroup} />
