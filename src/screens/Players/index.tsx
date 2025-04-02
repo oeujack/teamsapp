@@ -68,7 +68,6 @@ export function Players() {
   }
 
   useEffect(() => {
-    console.log('useEffect executou');
     fetchPlayersByTeam();
   }, [team]);
 
