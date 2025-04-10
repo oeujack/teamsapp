@@ -24,6 +24,7 @@ type RouteParams = {
 export function Players() {
   const navigate = useNavigation()
   const [newPlayerName, setNewPlayerName] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const [team, setTeam] = useState('Time A')
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([])
 
@@ -62,14 +63,17 @@ export function Players() {
 
   async function fetchPlayersByTeam() {
     try {
+      setIsLoading(true)
       const playersByTeam = await playersGetByGroupAndTeam(group, team)
       setPlayers(playersByTeam)
     } catch (error) {
       console.log(error)
       Alert.alert(
         'Pessoas',
-        'Não foi possível carregar as pessoas filtradas do time selecionado.'
+        'Não foi possível carregar as pessoas do time selecionado.'
       )
+    } finally {
+      setIsLoading(false)
     }
   }
 

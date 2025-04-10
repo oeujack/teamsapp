@@ -1,41 +1,43 @@
-import { GroupCard } from '@components/GroupCard';
-import { Container } from './styles';
-import { Header } from '@components/Header';
-import { Highlight } from '@components/Highlight';
-import { useState, useCallback } from 'react';
-import { FlatList } from 'react-native';
-import { ListEmpty } from '@components/ListEmpty';
-import { Button } from '@components/Button';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { groupGetAll } from '@storage/group/groupGetAll';
+import { GroupCard } from '@components/GroupCard'
+import { Container } from './styles'
+import { Header } from '@components/Header'
+import { Highlight } from '@components/Highlight'
+import { useState, useCallback } from 'react'
+import { Alert, FlatList } from 'react-native'
+import { ListEmpty } from '@components/ListEmpty'
+import { Button } from '@components/Button'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import { groupGetAll } from '@storage/group/groupGetAll'
 
 export function Groups() {
-  const [groups, setGroups] = useState<string[]>([]);
-
-  const navigation = useNavigation();
+  const [groups, setGroups] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const navigation = useNavigation()
 
   function handleNewGroup() {
-    navigation.navigate('new');
+    navigation.navigate('new')
   }
 
   async function fetchGroups() {
     try {
-      const data = await groupGetAll();
-      setGroups(data);
+      const data = await groupGetAll()
+      setGroups(data)
     } catch (error) {
-      console.log(error);
+      Alert.alert('Turmas', 'Não foi possível carregar as turmas')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   function handleOpenGroup(groupName: string) {
-    navigation.navigate('players', { group: groupName });
+    navigation.navigate('players', { group: groupName })
   }
 
   useFocusEffect(
     useCallback(() => {
-      fetchGroups();
+      fetchGroups()
     }, [])
-  );
+  )
 
   return (
     <Container>
@@ -57,5 +59,5 @@ export function Groups() {
 
       <Button title="Criar nova turma" onPress={handleNewGroup} />
     </Container>
-  );
+  )
 }
